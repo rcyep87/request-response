@@ -62,7 +62,7 @@ loop do
     # YOUR CODE GOES BELOW HERE
       if @params[:id] != nil
         if @params[:id].to_i > User.last.id
-           puts "It was not found! 502 BAD GATEWAY ERROR."
+           puts "It was not found! 416 REQUESTED RANGE NOT SATISFIABLE."
         else
           single_user = User.find(@params[:id])
           puts "ID: #{single_user.id} Name: #{single_user.first_name} #{single_user.last_name} Age: #{single_user.age}"
