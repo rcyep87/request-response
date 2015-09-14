@@ -61,8 +61,12 @@ loop do
 
     # YOUR CODE GOES BELOW HERE
       if @params[:id] != nil
-        single_user = User.find(@params[:id])
-        puts "ID: #{single_user.id} Name: #{single_user.first_name} #{single_user.last_name} Age: #{single_user.age}"
+        if @params[:id].to_i > User.last.id
+           puts "It was not found! 502 BAD GATEWAY ERROR."
+        else
+          single_user = User.find(@params[:id])
+          puts "ID: #{single_user.id} Name: #{single_user.first_name} #{single_user.last_name} Age: #{single_user.age}"
+        end
       elsif @params[:resource] == 'users' && @params[:id] == nil
         User.all.each do |names|
           puts "Name: #{names.first_name} #{names.last_name} Age: #{names.age}"
